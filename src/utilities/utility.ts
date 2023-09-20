@@ -7,5 +7,9 @@ export function extractJwtToken(authorizationHeader: string): string {
 
   const jwtToken = authorizationHeader.replace('Bearer ', '');
 
+  if (!authorizationHeader?.split(' ')[1]) {
+    throw new UnauthorizedException('Invalid JWT token');
+  }
+
   return jwtToken;
 }
